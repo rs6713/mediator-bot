@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Mediator-bot Setup</title>
+   
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main.css') }}">
+  <!--?q=1280549780-->
+  </head>
+  <body>
+    <div class="menu">
+      <span><a href="{{ url_for('main_page') }}">HOME</a></span>
+      <span><a href="{{ url_for('live_page') }}">LIVE</a></span>
+      <span>SET UP</span>
+      <span><a href="{{ url_for('stats_page') }}">ANALYSIS</a></span>
+      <span><a href="{{ url_for('feedback_page') }}">FEEDBACK</a></span>
+      <img src="static/assets/robot.ico" />
+    </div>
+    <div class="content">
+      <h1>Let's setup</h1>
+      <form method="post"  action="{{ url_for('setup_page') }}">
+        <input type="radio" name="robot_mode" value="polite" checked> Polite<br>
+        <input type="radio" name="robot_mode" value="rude"> Rude<br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>

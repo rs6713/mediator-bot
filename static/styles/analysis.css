@@ -1,0 +1,27 @@
+.transcript{
+  height:auto;
+  width:100%;
+  color:white;
+}
+.content h2{
+  height:auto;
+  overflow:hidden;
+}
+
+.transcript div{
+  background-color:yellow;
+  height:10%;
+  margin-bottom:0.2em;
+  vertical-align: middle;
+  box-sizing: border-box;
+  padding-left:1em;
+}
+
+.transcript span{
+  display:inline-block;
+}
+
+.content{
+  box-sizing: border-box; 
+  padding:1em;
+}

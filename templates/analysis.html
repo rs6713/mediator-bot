@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>User Interaction Analysis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/analysis.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main.css') }}">
+     
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
+		<script src="static/scripts/analysis.js" ></script><!--
+ --?q=1280549780-->
+    <script>
+    /*
+      $(document).ready(function(){
+        var transcript = {{transcript|tojson|safe}}
+        var people = {{people|tojson|safe}}
+        
+        var width= new Array(people.length);
+        for(i=0; i<width.length;i++){
+          width[i]=0;
+        }
+        var total_transcrip=0;
+        
+        for(i=0; i<transcript.length;i++){
+          total_transcrip+= transcript[i][2].length;
+          for(name=0; name < people.length;name++){
+            if(transcript[i][1]==people[name][0]){
+              width[name]+=transcript[i][2].length;
+            }
+          }       
+        }
+        for(i=0; i<width.length; i++){
+          width[i]=(width[i]/total_transcrip)*100;
+        }
+        $( ".transcript div" ).each(function( index ) {
+          $(this).style.width = Math.round(width[index]) + "%";
+        });
+        alert(total_transcrip + people[0][0] + Math.round(width[0]) + width[1]);
+      });*/
+       //var speech = {{speech|tojson|safe}}
+       //alert(speech[0][0] + speech[0][1]);
+    </script>
+  </head>
+  <body>
+    <div class="menu">
+      <span><a href="{{ url_for('main_page') }}">HOME</a></span>
+      <span><a href="{{ url_for('live_page') }}">LIVE</a></span>
+      <span><a href="{{ url_for('setup_page') }}">SET UP</a></span>
+      <span>ANALYSIS</span>
+      <span><a href="{{ url_for('feedback_page') }}">FEEDBACK</a></span>
+      <img src="static/assets/robot.ico" />
+    </div>
+    <div class="content">
+      <h2>Speaker analysis</h2>
+      <div class="transcript">
+        {% for user in speech %}
+          <div style="width:{{user[1]}}%"><span>{{user[0]}}</span></div>
+        {% endfor %}
+      </div>
+      <h2>Undesireable behaviour</h2>
+      <h2>Robot Interactions Required</h2>
+    </div>
+  </body>
+</html>

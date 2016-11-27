@@ -1,0 +1,1 @@
+html,body{max-height:100vh;max-width:100%;width:100%;}.menu{background-color:black;color:white;height:100%;width:30%;float:left;}.content{float:left;width:70%;height:100%;}

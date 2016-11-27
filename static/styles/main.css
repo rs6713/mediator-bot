@@ -1,0 +1,32 @@
+html, body{
+  max-height:100vh;
+  max-width:100%;
+  font-size:16pt;
+}
+.menu span{
+  margin-top:1%;
+  width:90%;
+  background-color:red;
+  height:10%;
+  display:inline-block;
+}
+.menu img{
+  max-height:40%;
+  max-width:90%;
+  display:inline-block;
+  vertical-align:bottom;
+}
+.menu{
+  text-align:center;
+  background-color:black;
+  color:white;
+  height:100%;
+  width:15%;
+  float:left;
+  position:relative;
+}
+.content{
+  float:left;
+  width:85%;
+  height:100%;
+}
