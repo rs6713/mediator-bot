@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Mediator-botty</title>
+   
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main2.css') }}">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
+    <script src="static/scripts/home.js" ></script>
+  <!--?q=1280549780-->
+  </head>
+  <body>
+    <div class="content">
+      <!-- Face display -->
+      {% if (display_type==0) %}
+        <div id="face">
+          {% if face=="none" %}
+            <img src="static/assets/smile_face.png" />
+          {% elif face=="sad" %}
+            <img src="static/assets/sad_face.png" />
+          {% elif face=="angry" %}
+            <img src="static/assets/angry_face.png" />
+          {% elif face=="happy" %}
+            <img src="static/assets/ecstatic_face.png" />
+          {% elif face=="shocked" %}
+            <img src="static/assets/shocked_face.png" />
+          {% else %}
+          {% endif %}
+        </div>
+        <div id="small_msg">
+          {{message}}
+        </div>
+       {% endif %} 
+      <!-- Big message only-->
+      {% if (display_type==1) %}
+        <div id="big_msg">
+          {{message}}
+        </div>
+      {% endif %}   
+      <!-- Bar graph -->
+      {% if display_type==2 %}
+        <div class="transcript">
+          <h2>Speech Quantity Analysis</h2>
+          {% for user in speech %}
+            <div style="width:{{user[1]}}%">
+              <span>{{user[0]}}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %} 
+      <!-- Pi chart only-->
+      {% if display_type==3 %}
+        
+      {% endif %} 
+    </div>
+    <div class="menu">
+      <div class="overlay"></div>
+      <div class="underlay"></div>
+      <span>LIVE</span>
+      <div id="separator"></div>
+      <a href="{{ url_for('setup_page') }}"><span>SET UP</span></a>
+    </div>
+
+  </body>
+</html>

@@ -22,10 +22,12 @@ class user_interface():
         self.robot = ["Robot", 0, 0]
         self.mikes = []  # (x,y) we need to input defaults
         self.transcript = []  # ("timestamp","name","words")] )list,
-        self.test_mode = 0  # 0- all, 1- etc level of involvement higher==less
+        self.test_mode = 0  # 0- face, 1- sentences, 2- bargraph, 3- pie chart, 
         self.display_lifespan=5
-        self.current_action="none"
+        self.current_face="happy" # none, angry, sad, happy, ecstatic
+        self.current_action="too_loud"
         self.actions = {
+            "none": "",
             "too_loud": self.quiet_down(),
             "speaking_over": self.talk_over(),
             "dominated": self.talk_fair_amounts()
@@ -40,7 +42,7 @@ class user_interface():
         self.transcript = [("1","richard","hello"),("2","samamtha","hello"),("3","richard","i just said that")]  # ("timestamp","name","words")] )list,
         self.speech=[("richard",21),("samamtha", 5)]#update every time transcript added or calculate before send with marker to check if recalculation needed
         self.total_speech=26
-        self.test_mode = 0  # 0- all, 1- etc level of involvement higher==less
+        self.test_mode = 2  # 0- all, 1- etc level of involvement higher==less
       
     def quiet_down(self):
         if (self.robot_mode != "polite"):
@@ -98,7 +100,8 @@ class user_interface():
 # Commented out as app was missing
 @app.route('/')
 def main_page():
-  return render_template('/home.html')
+  speech = [ (x, round(float(y)/page.total_speech*100)) for x,y in page.speech]
+  return render_template('/main.html', message=page.actions[page.current_action], display_type=page.test_mode, people=page.people, transcript=page.transcript, speech=speech, face=page.current_face)
   
 @app.route('/live')
 def live_page():
@@ -131,7 +134,7 @@ def add_header(response):
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 10
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 #assets = Environment(app)
 """
@@ -172,6 +175,8 @@ def dated_url_for(endpoint, **values):
 """
 page=user_interface()
 page.demo()
+
+
 
 if __name__ == "__main__":
   app.run(debug=True)
